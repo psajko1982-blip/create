@@ -1,3 +1,5 @@
+package.path = "/?.lua;/lib/?.lua;" .. package.path
+
 local net = require("lib.net")
 local log = require("lib.log")
 
