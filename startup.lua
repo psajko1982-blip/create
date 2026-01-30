@@ -1,1 +1,1 @@
-shell.run("inventory.lua")
+shell.run("lager.lua")
