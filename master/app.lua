@@ -7,12 +7,14 @@ end
 package.path = "/?.lua;/lib/?.lua;" .. package.path
 
 -- ==== DISPLAY SETUP ====
-local mon = peripheral.wrap("top")  -- vi VET att den finns
+local MONITOR_SIDE = "top"  -- ändra till "right/left/back" om du flyttar den
 
-if mon then
+local mon = peripheral.wrap(MONITOR_SIDE)
+if mon and peripheral.getType(MONITOR_SIDE) == "monitor" then
   mon.setTextScale(1.5)
   term.redirect(mon)
 end
+
 
 local net = require("net")
 local log = require("log")
