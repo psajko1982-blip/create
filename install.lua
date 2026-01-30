@@ -55,9 +55,11 @@ local function install()
     "main.lua",
     "lib/log.lua",
     "lib/net.lua",
+    "lib/ui.lua",
     "master/app.lua",
     "workers/worker.lua",
     "config/worker.lua",
+
   }
 
   print("== Factory deploy ==")
