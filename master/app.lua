@@ -1,3 +1,10 @@
+print("peripherals:", table.concat(peripheral.getNames(), ", "))
+for _, s in ipairs(peripheral.getNames()) do
+  print(s, peripheral.getType(s))
+end
+exit()
+
+
 -- master/app.lua (GUI)
 package.path = "/?.lua;/lib/?.lua;" .. package.path
 
