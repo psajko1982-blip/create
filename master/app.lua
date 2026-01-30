@@ -21,16 +21,6 @@ local ui  = require("ui")
 local known = {}   -- name -> { id=, out= }
 local state = {}   -- name -> "ON"|"OFF"|"?"
 
-
-local mon = findMonitor()
-if mon then
-  mon.setTextScale(1.0)   -- justera vid behov: 0.5–2.0
-  display = mon
-end
-
-term.redirect(display)
-
-
 local function discover()
   known = {}
   net.broadcast({ cmd = "PING" })
