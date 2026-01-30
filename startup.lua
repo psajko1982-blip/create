@@ -1,1 +1,2 @@
-shell.run("lager.lua")
+shell.run("main.lua")
+
