@@ -2,11 +2,17 @@ print("peripherals:", table.concat(peripheral.getNames(), ", "))
 for _, s in ipairs(peripheral.getNames()) do
   print(s, peripheral.getType(s))
 end
-exit()
-
 
 -- master/app.lua (GUI)
 package.path = "/?.lua;/lib/?.lua;" .. package.path
+
+-- ==== DISPLAY SETUP ====
+local mon = peripheral.wrap("top")  -- vi VET att den finns
+
+if mon then
+  mon.setTextScale(1.5)
+  term.redirect(mon)
+end
 
 local net = require("net")
 local log = require("log")
@@ -15,17 +21,6 @@ local ui  = require("ui")
 local known = {}   -- name -> { id=, out= }
 local state = {}   -- name -> "ON"|"OFF"|"?"
 
--- ==== DISPLAY SETUP ====
-local display = term.current()
-
-local function findMonitor()
-  for _, side in ipairs(peripheral.getNames()) do
-    if peripheral.getType(side) == "monitor" then
-      return peripheral.wrap(side)
-    end
-  end
-  return nil
-end
 
 local mon = findMonitor()
 if mon then
