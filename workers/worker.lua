@@ -27,6 +27,18 @@ local OUT = cfg.output_side or "back"
 local NAME = cfg.name or ("worker_%d"):format(os.getComputerID())
 local ACTIVE_LOW = cfg.active_low == true
 
+local function setMachine(isOn)
+  -- isOn=true betyder "maskinen ska vara PÅ"
+  -- active_low=true betyder: redstone=ON => maskin=OFF
+  local rs
+  if ACTIVE_LOW then
+    rs = not isOn      -- ON -> false, OFF -> true
+  else
+    rs = isOn          -- ON -> true,  OFF -> false
+  end
+  redstone.setOutput(OUT, rs)
+end
+
 
 log.info("Worker online. id=" .. os.getComputerID() .. " name=" .. NAME)
 log.info("Output side:", OUT)
@@ -42,14 +54,6 @@ while true do
         name = NAME,
         output_side = OUT,
       })
-
-    local function setMachine(isOn)
-        -- isOn = true betyder maskinen ska vara PÅ.
-        -- ACTIVE_LOW=true => redstone ska vara false när maskinen är PÅ.
-        local rs = isOn and (not ACTIVE_LOW) or ACTIVE_LOW
-        redstone.setOutput(OUT, rs)
-    end
-
     elseif msg.cmd == "ON" then
         setMachine(true)
         net.send(from, { ok = true, cmd = "ON", name = NAME, active_low = ACTIVE_LOW })
