@@ -54,9 +54,9 @@ end
 local function toggle(name)
   local s = state[name] or "?"
   if s == "ON" then
-    sendCmd(name, "OFF")
-  else
     sendCmd(name, "ON")
+  else
+    sendCmd(name, "OFF")
   end
 end
 
