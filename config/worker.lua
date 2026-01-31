@@ -1,4 +1,8 @@
 return {
-  name = "nether_wart",       -- byt per maskin
-  output_side = "back",   -- vilken sida som ger redstone till maskinen
+  name = "crusher",
+  output_side = "back",
+
+  -- När true: redstone=ON betyder maskin=OFF (active-low)
+  active_low = true,
 }
+
