@@ -157,15 +157,25 @@ while true do
       if name then toggle(name) end
     end
 
-  elseif e == "mouse_click" then
-    local btn, mx, my = ev[2], ev[3], ev[4]
+    elseif e == "mouse_click" or e == "monitor_touch" then
+    local mx, my
+
+    if e == "mouse_click" then
+        -- mouse_click: (event, button, x, y)
+        mx, my = ev[3], ev[4]
+    else
+        -- monitor_touch: (event, side, x, y)
+        mx, my = ev[3], ev[4]
+    end
+
     -- list börjar på rad 4
     local idx = my - 3
     local list = namesSorted()
     if idx >= 1 and idx <= #list then
-      selected = idx
-      local name = list[selected]
-      if name then toggle(name) end
+        selected = idx
+        local name = list[selected]
+        if name then toggle(name) end
     end
   end
+
 end
